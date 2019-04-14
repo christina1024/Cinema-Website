@@ -18,7 +18,7 @@ include("indexBase.php");
   {
     echo "Failed to connect to MySQL: " . mysqli_connect_error();
   }
-  $prep = mysqli_prepare($con,"SELECT * FROM Ticket AS T, Movie AS M WHERE T.customer = ? AND M.IMDBID=T.IMDB ORDER BY T.DTime DESC;");
+  $prep = mysqli_prepare($con,"SELECT * FROM ticket AS T, movie AS M WHERE T.customer = ? AND M.IMDBID=T.IMDB ORDER BY T.DTime DESC;");
   mysqli_stmt_bind_param($prep, "s", $_COOKIE["Cust_User"]);
   mysqli_stmt_execute($prep);
   $result = mysqli_stmt_get_result($prep);
@@ -42,7 +42,7 @@ include("indexBase.php");
     echo "</p><br>";
   }
 
-  $prep = mysqli_prepare($con,"SELECT * FROM Purchase AS P, Food AS F WHERE P.FoodID = F.FoodID AND P.customer = ?");
+  $prep = mysqli_prepare($con,"SELECT * FROM purchase AS P, food AS F WHERE P.FoodID = F.FoodID AND P.customer = ?");
   mysqli_stmt_bind_param($prep, "s", $_COOKIE["Cust_User"]);
   mysqli_stmt_execute($prep);
   $result = mysqli_stmt_get_result($prep);

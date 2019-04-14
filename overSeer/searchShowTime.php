@@ -35,14 +35,14 @@
 
 </form>
 
- 
+
  <?php
  include("identify.php");
 
  if( $flag==0){
  include("manPage.php");}
  else{include("adminPage.php");}
- 
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$IMDB= $_POST["IMDB"];
 	$DTime = $_POST["DTime"];
@@ -50,16 +50,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$cinemaAddr = $_POST["cinemaAddr"];
 	$roomNum = $_POST["roomNum"];
 	if($cinemaAddr=="-" and $roomNum=="-"){
-		$sql = "SELECT IMDB, DTime From ShowTime  WHERE IMDB LIKE '%$IMDB%' AND DTime LIKE '%$DTime%' AND price LIKE '%$price%'";
+		$sql = "SELECT S.IMDB, S.DTime, M.name From showtime AS S, movie AS M  WHERE IMDB LIKE '%$IMDB%' AND DTime LIKE '%$DTime%' AND price LIKE '%$price%' AND IMDB = IMDBID";
 	}
 	else if($cinemaAddr=="-"){
-		$sql = "SELECT IMDB, DTime From ShowTime  WHERE IMDB LIKE '%$IMDB%' AND DTime LIKE '%$DTime%' AND price LIKE '%$price%'AND roomNum LIKE '$roomNum'";
+		$sql = "SELECT S.IMDB, S.DTime, M.name From showtime AS S, movie AS M WHERE IMDB LIKE '%$IMDB%' AND DTime LIKE '%$DTime%' AND price LIKE '%$price%'AND roomNum LIKE '$roomNum' AND IMDB = IMDBID";
 	}
 	else if($roomNum=="-"){
-		$sql = "SELECT IMDB, DTime From ShowTime  WHERE IMDB LIKE '%$IMDB%' AND DTime LIKE '%$DTime%' AND price LIKE '%$price%' AND cinemaAddr LIKE '%$cinemaAddr%'";
+		$sql = "SELECT S.IMDB, S.DTime, M.name From showtime AS S, movie AS M WHERE IMDB LIKE '%$IMDB%' AND DTime LIKE '%$DTime%' AND price LIKE '%$price%' AND cinemaAddr LIKE '%$cinemaAddr%' AND IMDB = IMDBID";
 	}
-	else{ $sql = "SELECT IMDB, DTime From ShowTime  WHERE IMDB LIKE '%$IMDB%' AND DTime LIKE '%$DTime%' AND price LIKE '%$price%' AND cinemaAddr LIKE '%$cinemaAddr%' AND roomNum LIKE '$roomNum'";}
-	
+	else{ $sql = "SELECT S.IMDB, S.DTime, M.name From showtime AS S, movie AS M WHERE IMDB LIKE '%$IMDB%' AND DTime LIKE '%$DTime%' AND price LIKE '%$price%' AND cinemaAddr LIKE '%$cinemaAddr%' AND roomNum LIKE '$roomNum' AND IMDB = IMDBID";}
+
   $result = mysqli_query($con,$sql);
 
 	if (mysqli_num_rows($result) > 0) {
@@ -74,14 +74,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   position: absolute;
   top: 50px;
 			left: 800px;">';
- 
-	
+
+
 	echo"<h1 style='font-size:150%; color: green;'>Display</h1>";
     while($row = mysqli_fetch_assoc($result)) {
 		echo '<div style="padding: 20px 0px" >';
-        echo "<a href='editShowTime.php?MovieIMDBID=".$row["IMDB"]." & DTime=".$row["DTime"]."'>".$row["IMDB"]." ---> ".$row["DTime"]."</a>";
+        echo "<a href='editShowTime.php?MovieIMDBID=".$row["IMDB"]." & DTime=".$row["DTime"]."'>".$row["name"]." ---> ".$row["DTime"]."</a>";
     }
-	} 
+	}
 else {
     echo"<p align='center' style='color:red'>no match find </p>";
 }

@@ -13,7 +13,7 @@ include("indexBase.php");
 		echo "Failed to connect to MySQL: " . mysqli_connect_error();
 	}
 	//get account detail
-	$sql =  "SELECT * FROM Food WHERE foodID =".$foodID;
+	$sql =  "SELECT * FROM food WHERE foodID =".$foodID;
 	$result = mysqli_query($con,$sql);
 	$row = mysqli_fetch_assoc($result);
 	$count = mysqli_num_rows($result);

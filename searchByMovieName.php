@@ -20,7 +20,7 @@ if (mysqli_connect_errno($con))
 	Genre:	<select name="Genre">
 		<option value="-">ANY</option>
     <?php
-    $sql =  "SELECT DISTINCT genre FROM Genre";
+    $sql =  "SELECT DISTINCT genre FROM genre";
     $result = mysqli_query($con,$sql);
     while($row = mysqli_fetch_assoc($result)) {
       echo "<option value='".$row['genre']."'>";
@@ -41,14 +41,14 @@ if (mysqli_connect_errno($con))
 		$filer = "%".$_POST['Mname']."%";
 		$Genre = $_POST['Genre'];
    if($Genre=="-"){
-	   $prep = mysqli_prepare($con,"SELECT IMDBID, name ,image FROM Movie as M WHERE EXISTS (SELECT * FROM ActIn as I WHERE EXISTS(SELECT * FROM Actor as A WHERE A.name LIKE? AND M.name LIKE ? AND A.IMDBID=I.actorIMDB AND I.movieIMDB=M.IMDBID))");
+	   $prep = mysqli_prepare($con,"SELECT IMDBID, name ,image FROM movie as M WHERE EXISTS (SELECT * FROM actin as I WHERE EXISTS(SELECT * FROM actor as A WHERE A.name LIKE? AND M.name LIKE ? AND A.IMDBID=I.actorIMDB AND I.movieIMDB=M.IMDBID))");
 		if ( !$prep ) {
 		die('mysqli error: '.mysqli_error($con));
 		}
 		mysqli_stmt_bind_param($prep, "ss",$actor, $filer);
 	}
 	else{
-    $prep = mysqli_prepare($con,"SELECT IMDBID, name, image From Movie as M WHERE EXISTS (SELECT * FROM Genre as G WHERE EXISTS (SELECT * FROM ActIn as I WHERE EXISTS(SELECT * FROM Actor as A WHERE A.name LIKE ? AND G.genre LIKE ?
+    $prep = mysqli_prepare($con,"SELECT IMDBID, name, image From movie as M WHERE EXISTS (SELECT * FROM genre as G WHERE EXISTS (SELECT * FROM actin as I WHERE EXISTS(SELECT * FROM actor as A WHERE A.name LIKE ? AND G.genre LIKE ?
 	AND M.name LIKE ? AND A.IMDBID=I.actorIMDB AND I.movieIMDB=G.movieIMDB AND G.movieIMDB=M.IMDBID)))");
 		mysqli_stmt_bind_param($prep, "sss",$actor,$Genre, $filer);
 	}
@@ -64,7 +64,7 @@ if (mysqli_connect_errno($con))
 		}
  }
   if (isset($_GET['Addr'])){
-    $prep = mysqli_prepare($con,"SELECT IMDBID, name, image FROM Movie as M WHERE EXISTS(SELECT * FROM PlayIn as P WHERE P.cinemaAddr = ? AND P.movieIMDB = M.IMDBID)");
+    $prep = mysqli_prepare($con,"SELECT IMDBID, name, image FROM movie as M WHERE EXISTS(SELECT * FROM playin as P WHERE P.cinemaAddr = ? AND P.movieIMDB = M.IMDBID)");
     $pram = "".$_GET['Addr'];
 	 $pass = $_GET['Addr'];
     mysqli_stmt_bind_param($prep, "s", $pram);
@@ -80,7 +80,7 @@ if (mysqli_connect_errno($con))
   }
 
   else{
-    $prep = mysqli_prepare($con,"SELECT IMDBID, name, image FROM Movie WHERE name LIKE ?");
+    $prep = mysqli_prepare($con,"SELECT IMDBID, name, image FROM movie WHERE name LIKE ?");
     $filer = "%";
     mysqli_stmt_bind_param($prep, "s", $filer);
     mysqli_stmt_execute($prep);

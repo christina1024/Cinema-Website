@@ -32,7 +32,7 @@ if($_SERVER["REQUEST_METHOD"] == "GET"){
 
 }
 if(!isset($_GET['IMDB'])){
-  $prep = mysqli_prepare($con,"SELECT address FROM Cinema WHERE address <> ?");
+  $prep = mysqli_prepare($con,"SELECT address FROM cinema WHERE address <> ?");
   $filer = "";
   mysqli_stmt_bind_param($prep, "s", $filer);
   mysqli_stmt_execute($prep);

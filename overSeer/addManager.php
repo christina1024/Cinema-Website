@@ -60,7 +60,7 @@ form {
 				echo "Failed to connect to MySQL: " . mysqli_connect_error();
 			}
 
-			$sql = "INSERT INTO OverSeer (userName, passwd, name, phoneNumber,adminFlag , manFlag) VALUES ('". $userName ."','". $passwd ."','". $name ."','". $phoneNumber ."' ,'".$admFlag."','".$mFlag."')";
+			$sql = "INSERT INTO overseer (userName, passwd, name, phoneNumber,adminFlag , manFlag) VALUES ('". $userName ."','". $passwd ."','". $name ."','". $phoneNumber ."' ,'".$admFlag."','".$mFlag."')";
 
 			if (!mysqli_query($con,$sql))
 			{

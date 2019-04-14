@@ -12,7 +12,7 @@
   {
 	echo "Failed to connect to MySQL: " . mysqli_connect_error();
   }
-  $sql = "INSERT INTO Ticket (DTime, cinemaAddr, roomNum, IMDB, customer)VALUES ('". $DTime ."','". $cinemaAddr ."','". $roomNum ."','". $IMDB ."','". $_COOKIE["Cust_User"] ."');";
+  $sql = "INSERT INTO ticket (DTime, cinemaAddr, roomNum, IMDB, customer)VALUES ('". $DTime ."','". $cinemaAddr ."','". $roomNum ."','". $IMDB ."','". $_COOKIE["Cust_User"] ."');";
   if (!mysqli_query($con,$sql)){die();}
   else{
 	  header("Location:customerAccount.php");

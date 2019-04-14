@@ -12,11 +12,11 @@
   {
 	echo "Failed to connect to MySQL: " . mysqli_connect_error();
   }
-  $sql="INSERT INTO Purchase (foodID, customer) VALUE ('". $foodId ."','". $_COOKIE["Cust_User"] ."')";
+  $sql="INSERT INTO purchase (foodID, customer) VALUE ('". $foodId ."','". $_COOKIE["Cust_User"] ."')";
   if (!mysqli_query($con,$sql)){die();}
   else{
 	  header("Location:customerAccount.php");
   }
-  
+
   mysqli_close($con);
 ?>

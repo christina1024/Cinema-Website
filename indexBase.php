@@ -6,9 +6,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<style>
 		body {background-image: url("image/images.jpg");
-		background-repeat:repeat;
-		background-attachment:fixed;
-		overflow:scroll;
+		  background-repeat:repeat;
+			background-attachment:fixed;
+			overflow:scroll;
 					font-family:Arial}
 
 		/*{box-sizing: border-box;}*/

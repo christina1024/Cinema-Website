@@ -8,11 +8,11 @@
 			front-size: 30px;">
 	<h1>Modify Search</h1>
 	<label>Username :</label><br/>
-    <input type="text" name="username"/><br/><br/>
+  <input type="text" name="username"/><br/><br/>
 	<label>name :</label><br/>
-    <input type="text" name="name"/><br/><br/>
+  <input type="text" name="name"/><br/><br/>
 	<label>phoneNumber :</label><br/>
-	<input type="text" name="phoneNumber"/><br/><br/>	
+	<input type="text" name="phoneNumber"/><br/><br/>
 	</div>
 
 	<div style="padding: 300px 20px;
@@ -22,23 +22,23 @@
    </div>
 </form>
  </div>
- 
+
  <?php
  include("identify.php");
 
  if( $flag==0){
  include("manPage.php");}
  else{include("adminPage.php");}
- 
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$userName = $_POST["username"];
 	$name = $_POST["name"];
 	$phoneNumber = $_POST["phoneNumber"];
 	$admFlag=false;
 
-if($flag==0){$sql = "SELECT username From Customer  WHERE userName LIKE '%$userName%' AND name LIKE '%$name%' AND phoneNumber LIKE '%$phoneNumber%'";}
+if($flag==0){$sql = "SELECT username From customer  WHERE userName LIKE '%$userName%' AND name LIKE '%$name%' AND phoneNumber LIKE '%$phoneNumber%'";}
 else{
-$sql = "SELECT username From OverSeer  WHERE username LIKE '%$userName%' AND adminFlag='$admFlag' AND name LIKE '%$name%' AND phoneNumber LIKE '%$phoneNumber%'";}
+$sql = "SELECT username From overseer  WHERE username LIKE '%$userName%' AND adminFlag='$admFlag' AND name LIKE '%$name%' AND phoneNumber LIKE '%$phoneNumber%'";}
   $result = mysqli_query($con,$sql);
 
 	if (mysqli_num_rows($result) > 0) {
@@ -53,8 +53,8 @@ $sql = "SELECT username From OverSeer  WHERE username LIKE '%$userName%' AND adm
   position: absolute;
   top: 50px;
 			left: 800px;">';
- 
-	
+
+
 	echo"<h1 style='font-size:150%; color: green;'>Display</h1>";
     while($row = mysqli_fetch_assoc($result)) {
 		echo '<div style="padding: 20px 0px" >';
@@ -63,7 +63,7 @@ $sql = "SELECT username From OverSeer  WHERE username LIKE '%$userName%' AND adm
 		else{
 			echo "<a href='editCustomer.php?holdername=".$row["username"]."'>".$row["username"]."</a>";}
     }
-	} 
+	}
 else {
     echo"<p align='center' style='color:red'>no match find</p>";
 }

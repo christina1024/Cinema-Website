@@ -13,7 +13,7 @@ if (isset($_GET["movieIMDBID"])) {
 		echo "Failed to connect to MySQL: " . mysqli_connect_error();
 	}
 	//get account detail
-	$sql =  "SELECT * FROM Movie WHERE IMDBID = '$IMDBID'";
+	$sql =  "SELECT * FROM movie WHERE IMDBID = '$IMDBID'";
 	$result = mysqli_query($con,$sql);
 	$row = mysqli_fetch_assoc($result);
 	$count = mysqli_num_rows($result);
@@ -43,7 +43,7 @@ if (isset($_GET["movieIMDBID"])) {
 </body>
 </html>
 <?php
- $sql =  "SELECT cinemaAddr FROM PlayIn WHERE movieIMDB = '$IMDBID'";
+ $sql =  "SELECT cinemaAddr FROM playin WHERE movieIMDB = '$IMDBID'";
   $result = mysqli_query($con,$sql);
 
 	if (mysqli_num_rows($result) > 0) {

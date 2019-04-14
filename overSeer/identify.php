@@ -11,7 +11,7 @@ if(!isset($_SESSION)) {
   {
 	echo "Failed to connect to MySQL: " . mysqli_connect_error();
   }
-  $sql =  "SELECT name, phoneNumber,adminFlag FROM OverSeer WHERE userName = '$username'";
+  $sql =  "SELECT name, phoneNumber,adminFlag FROM overseer WHERE userName = '$username'";
   $result = mysqli_query($con,$sql);
 	$row = mysqli_fetch_assoc($result);
 	$count = mysqli_num_rows($result);

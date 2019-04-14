@@ -28,7 +28,7 @@ if (isset($_GET['holdername'])) {
 		echo "Failed to connect to MySQL: " . mysqli_connect_error();
 	}
 //get account detail
-	$sql =  "SELECT name, phoneNumber, passwd, username, age FROM Customer WHERE userName = '$holdername'";
+	$sql =  "SELECT name, phoneNumber, passwd, username, age FROM customer WHERE userName = '$holdername'";
 	$result = mysqli_query($con,$sql);
 	$row = mysqli_fetch_assoc($result);
 	$count = mysqli_num_rows($result);
@@ -78,7 +78,7 @@ if (isset($_GET['holdername'])) {
 
 <form method="post" action="delete.php">
     <input type="hidden" name="holdername" value=<?php echo $holdername;?>>
-	 <input type="hidden" name="tableName" value="Customer">
+	 <input type="hidden" name="tableName" value="customer">
 	 <input type="hidden" name="columnName" value="userName">
 	 <input type="hidden" name="returnLocation" value="searchPeople.php">
     <input type="submit" value="delete">

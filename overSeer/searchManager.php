@@ -42,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	echo "Failed to connect to MySQL: " . mysqli_connect_error();
   }
 
-  $sql = "SELECT username From OverSeer  WHERE username LIKE '%$userName%' AND adminFlag='$admFlag' AND name LIKE '%$name%' AND phoneNumber LIKE '%$phoneNumber%'";
+  $sql = "SELECT username From overseer  WHERE username LIKE '%$userName%' AND adminFlag='$admFlag' AND name LIKE '%$name%' AND phoneNumber LIKE '%$phoneNumber%'";
   $result = mysqli_query($con,$sql);
 
 	if (mysqli_num_rows($result) > 0) {

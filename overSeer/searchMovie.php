@@ -63,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		if($flag==1){
         echo "<a href='editMovie.php?MovieIMDBID=".$row["IMDBID"]."'>".$row["IMDBID"]." --- ".$row["name"]."</a>";}
 		else{
-			echo "<a href='addShowtime.php?MovieIMDBID=".$row["IMDBID"]."'>".$row["IMDBID"]." --- ".$row["name"]."</a>";}
+			echo "<a href='addShowTime.php?MovieIMDBID=".$row["IMDBID"]."'>".$row["IMDBID"]." --- ".$row["name"]."</a>";}
     }
 	}
 else {

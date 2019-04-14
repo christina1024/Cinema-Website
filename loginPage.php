@@ -24,7 +24,7 @@
 			top: 354px;
 			height: 20px;
 			front-size: 15px;}
-			
+
 		input[name=return]{
 			width: 150px;
 			position: absolute;
@@ -57,7 +57,7 @@
    Password: <input type="password" name="password"/><br/><br/>
 
    <input type="submit" name= "login" value="login"/>
-</form>		
+</form>
 <form>
 <input type="button"8 name="return" value="Back" onclick="window.location.href='index.php'" />
 </form>
@@ -85,17 +85,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 //authenticate user
 //store username and password in row if authentication is suucessfule
-	$prep = mysqli_prepare($con,"SELECT userName FROM Customer WHERE userName = ? and passwd = ?");
+	$prep = mysqli_prepare($con,"SELECT userName FROM customer WHERE userName = ? and passwd = ?");
 	mysqli_stmt_bind_param($prep, "ss", $userName, $passwd);
 	mysqli_stmt_execute($prep);
 	$result = mysqli_stmt_get_result($prep);
-	$row = mysqli_fetch_array($result,MYSQLI_ASSOC);
-	$count = mysqli_num_rows($result);
 
  if (!$result)
   {
   die('Error: ' . mysqli_error($con));
   }
+	$count = mysqli_num_rows($result);
 
  //authentication is suucessfule
   if($count == 1){

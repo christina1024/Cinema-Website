@@ -27,7 +27,7 @@ if (isset($_GET['holdername'])) {
 		echo "Failed to connect to MySQL: " . mysqli_connect_error();
 	}
 //get account detail
-	$sql =  "SELECT name, phoneNumber, passwd, username FROM OverSeer WHERE userName = '$holdername'";
+	$sql =  "SELECT name, phoneNumber, passwd, username FROM overseer WHERE userName = '$holdername'";
 	$result = mysqli_query($con,$sql);
 	$row = mysqli_fetch_assoc($result);
 	$count = mysqli_num_rows($result);
@@ -55,14 +55,14 @@ if (isset($_GET['holdername'])) {
 
 	<label>username : <?php echo $holdername;?></label><br/><br/>
 	<label>name: </label><br/>
-    <input type="text" name="name" value=<?php echo $row["name"];?>><br/><br/>
+    <input type="text" name="name" value=<?php echo '"'.$row["name"].'"';?>><br/><br/>
 	<label>Password :</label><br/>
     <input type="password" name="password" value=<?php echo $row["passwd"];?>><br/><br/>
 	<label>PhoneNumber :</label><br/>
     <input type="text" name="phoneNumber" value=<?php echo $row["phoneNumber"];?>><br/><br/>
 	<label>Position : Manager</label><br/><br/>
 	<input type="hidden" name="holdername" value=<?php echo $holdername;?>>
-	<input type="hidden" name="tableName" value="OverSeer">
+	<input type="hidden" name="tableName" value="overseer">
 
    <input type="submit" value="update"/>
 </form>
@@ -75,7 +75,7 @@ if (isset($_GET['holdername'])) {
 
 <form method="post" action="delete.php">
     <input type="hidden" name="holdername" value=<?php echo $holdername;?>>
-	 <input type="hidden" name="tableName" value="OverSeer">
+	 <input type="hidden" name="tableName" value="overseer">
 	 <input type="hidden" name="columnName" value="username">
 	 <input type="hidden" name="returnLocation" value="searchPeople.php">
     <input type="submit" value="delete">

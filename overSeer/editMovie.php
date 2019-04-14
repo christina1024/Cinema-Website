@@ -27,7 +27,7 @@ if (isset($_GET['MovieIMDBID'])) {
 		echo "Failed to connect to MySQL: " . mysqli_connect_error();
 	}
 //get account detail
-	$sql =  "SELECT * FROM Movie WHERE IMDBID = '$MovieIMDBID'";
+	$sql =  "SELECT * FROM movie WHERE IMDBID = '$MovieIMDBID'";
 	$result = mysqli_query($con,$sql);
 	$row = mysqli_fetch_assoc($result);
 	$count = mysqli_num_rows($result);
@@ -62,7 +62,7 @@ if (isset($_GET['MovieIMDBID'])) {
 	<textarea name="synopsis" rows="5" cols="30" value="<?php echo $row["synopsis"];?>"></textarea><br/><br/>
 	<label>Director :</label><br/>
     <input type="text" name="director" value="<?php echo $row["director"];?>"></input><br/><br/>
-	
+
 	<div style="top: 70px;
 			position: absolute;
 			left: 300px;
@@ -87,7 +87,7 @@ if (isset($_GET['MovieIMDBID'])) {
 		<option value="documentary">documentary</option>
 	</select> <br/><br/>
    </div>
-	
+
 	<input type="hidden" name="MovieIMDBID" value=<?php echo $MovieIMDBID;?>>
 	<input type="hidden" name="tableName" value="Movie">
 

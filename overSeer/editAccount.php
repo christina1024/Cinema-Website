@@ -20,7 +20,7 @@ $username = $_SESSION['admName'];
 		echo "Failed to connect to MySQL: " . mysqli_connect_error();
 	}
 //get account detail
-	$sql =  "SELECT name, phoneNumber, passwd, adminFlag FROM OverSeer WHERE userName = '$username'";
+	$sql =  "SELECT name, phoneNumber, passwd, adminFlag FROM overseer WHERE userName = '$username'";
 
 	$result = mysqli_query($con,$sql);
 	$row = mysqli_fetch_assoc($result);
@@ -58,7 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	  die();
 	}
 
-	$sql = "UPDATE OverSeer SET passwd='".$passwd."', name='".$name."', phoneNumber='".$phoneNumber."' WHERE userName = '$username' ";
+	$sql = "UPDATE overseer SET passwd='".$passwd."', name='".$name."', phoneNumber='".$phoneNumber."' WHERE userName = '$username' ";
 
 	 if (!mysqli_query($con,$sql))
   {

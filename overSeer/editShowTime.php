@@ -32,8 +32,8 @@ if (isset($_GET['MovieIMDBID'])) {
 	$row = mysqli_fetch_assoc($result);
 	$count = mysqli_num_rows($result);
 	$movieName= $row["name"];
-	
-	$sql =  "SELECT * FROM ShowTime WHERE IMDB = '$MovieIMDBID' AND DTime='$DTime'";
+
+	$sql =  "SELECT * FROM showtime WHERE IMDB = '$MovieIMDBID' AND DTime='$DTime'";
 	$result = mysqli_query($con,$sql);
 	$row = mysqli_fetch_assoc($result);
 	$count = mysqli_num_rows($result);
@@ -73,6 +73,9 @@ if (isset($_GET['MovieIMDBID'])) {
 
 	<input type="hidden" name="MovieIMDBID" value=<?php echo $MovieIMDBID;?>>
 	<input type="hidden" name="tableName" value="ShowTime">
+	<input type="hidden" name="OldDTime" value="<?php echo $row["DTime"];?>">
+	<input type="hidden" name="OldcinemaAddr" value="<?php echo $row["cinemaAddr"];?>">
+	<input type="hidden" name="OldroomNum" value="<?php echo $row["roomNum"];?>">
 
 
    <input type="submit" value="update"/>
@@ -87,7 +90,7 @@ if (isset($_GET['MovieIMDBID'])) {
     <input type="hidden" name="holdername" value=<?php echo $MovieIMDBID;?>>
 	 <input type="hidden" name="holdername2" value=<?php echo $DTime;?>>
 	 <input type="hidden" name="holdername3" value=<?php echo $row["cinemaAddr"];?>>
-	 <input type="hidden" name="tableName" value="ShowTime">
+	 <input type="hidden" name="tableName" value="showtime">
 	 <input type="hidden" name="columnName" value="IMDB">
 	 <input type="hidden" name="columnName2" value="DTime">
 	 <input type="hidden" name="returnLocation" value="searchShowTime.php">
